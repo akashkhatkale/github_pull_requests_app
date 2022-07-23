@@ -1,0 +1,42 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.GithubApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorAccent</item>
+    </style>
+
+    <!-- Heading theme-->
+    <style name="HeadingTextAppearance" parent="TextAppearance.AppCompat.Headline">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Title theme-->
+    <style name="TitleTextAppearance" parent="TextAppearance.AppCompat.Title">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="SubtitleTextAppearance" parent="TextAppearance.AppCompat.SearchResult.Subtitle">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/subtitleTextColor</item>
+    </style>
+    <style name="SmallTitleTextAppearance" parent="TextAppearance.AppCompat.SearchResult.Subtitle">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/subtitleTextColor</item>
+    </style>
+    <style name="InfoTextAppearance" parent="TextAppearance.AppCompat.SearchResult.Subtitle">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+
+
+</resources>

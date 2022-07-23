@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Github App</string>
+    <string name="closedPullRequests">Closed pull requests</string>
+    <string name="openPullRequests">Open pull requests</string>
+    <string name="pullRequests">Pull requests</string>
+</resources>

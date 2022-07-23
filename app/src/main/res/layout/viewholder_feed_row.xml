@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/feedRowLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:background="@drawable/ripple">
+
+    <ImageView
+        android:id="@+id/pullRequestIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="15dp"
+        android:src="@drawable/icon_close_pull_request"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/pullRequestTitle" />
+
+    <TextView
+        android:id="@+id/pullRequestTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="........."
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:layout_marginTop="10dp"
+        android:textAppearance="@style/TitleTextAppearance"
+        app:layout_constraintEnd_toStartOf="@+id/pullRequestStatus"
+        app:layout_constraintStart_toEndOf="@id/pullRequestIcon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pullRequestStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="..."
+        android:layout_marginRight="15dp"
+        android:textAppearance="@style/SmallTitleTextAppearance"
+        app:layout_constraintBottom_toBottomOf="@+id/pullRequestIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pullRequestTitle" />
+
+    <TextView
+        android:id="@+id/pullRequestInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="........."
+        android:textAppearance="@style/InfoTextAppearance"
+        app:layout_constraintStart_toStartOf="@+id/pullRequestTitle"
+        app:layout_constraintTop_toBottomOf="@id/pullRequestTitle" />
+
+
+    <LinearLayout
+        android:id="@+id/pullRequestUser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/pullRequestInfo"
+        app:layout_constraintTop_toBottomOf="@id/pullRequestInfo">
+
+        <include
+            layout="@layout/layout_small_profile" />
+
+        <TextView
+            android:id="@+id/pullRequestUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:text="..."
+            android:textAppearance="@style/SmallTitleTextAppearance" />
+
+        <TextView
+            android:id="@+id/pullRequestStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="..."
+            android:textAppearance="@style/SmallTitleTextAppearance" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/borderColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pullRequestUser" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

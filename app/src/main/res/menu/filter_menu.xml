@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/closeMenuPullRequest"
+            android:checkable="true"
+            android:checked="true"
+            android:title="Closed"/>
+        <item android:id="@+id/openMenuPullRequest"
+            android:checkable="true"
+            android:checked="false"
+            android:title="Open"/>
+    </group>
+
+</menu>

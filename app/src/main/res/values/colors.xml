@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#181D25</color>
+    <color name="colorPrimaryLight">#2F3949</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#2C9EFF</color>
+
+    <color name="borderColor">#182D3E</color>
+    <color name="redColor">#C9241D</color>
+
+
+    <!-- Text colors-->
+    <color name="subtitleTextColor">#5D6972</color>
+    <color name="mainTextColor">#FFFFFF</color>
+
+    <!-- Normal colors-->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
