@@ -51,7 +51,7 @@ class MainViewModel @Inject constructor(
         _user.postValue(response)
     }
 
-    fun loadPullRequestsFeed(state : String) = viewModelScope.launch {
+    private fun loadPullRequestsFeed(state : String) = viewModelScope.launch {
         val response = pullRequestsDataSource.getPullRequests(state).cachedIn(viewModelScope)
         _pullRequests = response
     }

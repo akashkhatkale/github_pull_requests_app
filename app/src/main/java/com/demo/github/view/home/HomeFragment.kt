@@ -9,6 +9,7 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -68,7 +69,6 @@ class HomeFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-
                 return true
             }
         }, viewLifecycleOwner)
@@ -114,12 +114,7 @@ class HomeFragment : Fragment() {
                 showLoading(View.INVISIBLE)
 
                 // getting the error
-                val error = when {
-                    loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                    else -> null
-                }
+                val error = getError(loadState)
                 error?.let {
                     showStatus(View.VISIBLE)
                     setStatus(it.error.message ?: UNKNOWN_ERROR)
@@ -135,6 +130,13 @@ class HomeFragment : Fragment() {
     private fun refreshRecyclerView(feedResponse : PagingData<PullRequestModel>){
         feedAdapter.submitData(viewLifecycleOwner.lifecycle, feedResponse)
     }
+    private fun getError(loadState : CombinedLoadStates) =
+        when {
+            loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+            loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+            loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+            else -> null
+        }
 
 
     // update ui
@@ -148,7 +150,6 @@ class HomeFragment : Fragment() {
 
     private fun setStatus(status : String){
         binding.feedStatus.text = status
-
     }
 
     private fun setProfile(profile : UserModel){

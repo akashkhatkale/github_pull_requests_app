@@ -75,7 +75,6 @@ class MainViewModelTest {
         assertEquals(user.data, null)
         assertEquals(user.message?.message, HttpException().message)
     }
-
 }
 
 

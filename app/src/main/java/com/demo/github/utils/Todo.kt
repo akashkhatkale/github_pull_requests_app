@@ -23,8 +23,8 @@ package com.demo.github.utils
 // [done] 7) good ui
 // [done] 8) retrofit
 // [done] 9) show user image and username
-// 7) test cases
-//
+// [done] 10) view model testing, created fake repo, unit tests
+// 11) paging tests
 //
 //
 // }

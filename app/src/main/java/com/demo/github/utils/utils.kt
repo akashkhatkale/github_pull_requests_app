@@ -1,5 +1,7 @@
 package com.demo.github.utils
 
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
 import com.demo.github.data.api.Resource
 import com.demo.github.data.model.PullRequestModel
 import com.demo.github.exceptions.UnknownException
@@ -44,3 +46,4 @@ fun getDateAsDay(dateString: String?) : String {
     val calendar = getDate(dateString)
     return "${calendar.get(Calendar.DAY_OF_MONTH)} ${Constants.month[calendar.get(Calendar.MONTH)]} ${calendar.get(Calendar.YEAR)}"
 }
+
