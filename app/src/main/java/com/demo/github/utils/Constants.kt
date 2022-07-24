@@ -4,12 +4,18 @@ import com.demo.github.R
 
 
 object PullRequestState {
+    const val CLOSED_PULL_REQUEST_STATUS = "Closed pull requests"
+    const val NORMAL_PULL_REQUEST_STATUS = "Pull requests"
+    
+    const val CLOSED_PULL_REQUEST = "closed"
+    
     val state = hashMapOf(
         "closed" to hashMapOf(
-            "state" to "closed",
+            "state" to CLOSED_PULL_REQUEST,
             "color" to R.color.redColor,
             "icon" to R.drawable.icon_close_pull_request,
-            "status" to R.string.closedPullRequestsTitle
+            "status" to CLOSED_PULL_REQUEST_STATUS,
+            "date" to "closed_at"
         )
     )
 }

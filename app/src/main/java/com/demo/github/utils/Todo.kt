@@ -18,9 +18,11 @@ package com.demo.github.utils
 // [done] 2) coroutines
 // [done] 3) dependency injection
 // [done] 4) pagination
-// [done] 5) good ui
-// [done] 6) retrofit
-// [done] 7) show user image and username
+// [done] 5) navigation component
+// [done] 6) view binding
+// [done] 7) good ui
+// [done] 8) retrofit
+// [done] 9) show user image and username
 // 7) test cases
 //
 //

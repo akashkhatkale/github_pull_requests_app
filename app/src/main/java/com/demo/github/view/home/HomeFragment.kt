@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
 
         // observe state
         viewModel.stateValue.observe(viewLifecycleOwner){
-            binding.pullRequestHeading.text = resources.getString(getHeadingTitle(it))
+            binding.pullRequestHeading.text = getHeadingTitle(it)
         }
 
 
