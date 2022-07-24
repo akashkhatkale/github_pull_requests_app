@@ -133,9 +133,15 @@ class HomeFragment : Fragment() {
                 // getting the error
                 val error = getError(loadState)
                 error?.let {
-                    showStatus(View.VISIBLE)
-                    showStatusRetry(View.VISIBLE)
-                    setStatus(it.error.message ?: UNKNOWN_ERROR)
+                    if(feedAdapter.itemCount > 0){
+                        showStatus(View.INVISIBLE)
+                        showStatusRetry(View.INVISIBLE)
+                        setStatus(it.error.message ?: UNKNOWN_ERROR)
+                    }else{
+                        showStatus(View.VISIBLE)
+                        showStatusRetry(View.VISIBLE)
+                        setStatus(it.error.message ?: UNKNOWN_ERROR)
+                    }
                 } ?: run {
                     if(feedAdapter.itemCount <= 0) {
                         showStatus(View.VISIBLE)
