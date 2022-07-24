@@ -64,15 +64,4 @@ class UtilsTest {
         assertEquals(infoText, "#2345 closed")
     }
     
-    @Test
-    fun `Response result with right response`(){
-        val dummyData = listOf(
-            PullRequestModel(),
-            PullRequestModel()
-        )
-        val response = handleResponseResult(Response.success(dummyData))
-        
-        assertEquals(response.data, dummyData)
-        assertEquals(response.message, null)
-    }
 }

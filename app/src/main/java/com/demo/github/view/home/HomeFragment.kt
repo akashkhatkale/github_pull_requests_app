@@ -152,6 +152,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setProfile(profile : UserModel){
+        Log.d(FEED_FRAGMENT_LOG, "setProfile: profile : ${profile}")
         binding.homeToolbarTitle.text = "Hello, ${profile.login}"
         requestManager
             .load(profile.avatar_url)

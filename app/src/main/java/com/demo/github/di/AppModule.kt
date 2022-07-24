@@ -4,8 +4,10 @@ import android.content.Context
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.demo.github.data.api.GithubAPI
-import com.demo.github.data.repository.RemoteDataSource
-import com.demo.github.data.repository.RemoteRepository
+import com.demo.github.data.repository.pullrequest.PullRequestDataSource
+import com.demo.github.data.repository.pullrequest.PullRequestRepository
+import com.demo.github.data.repository.user.UserDataSource
+import com.demo.github.data.repository.user.UserRepository
 import com.demo.github.utils.UrlConstants
 import com.demo.github.view.home.PullRequestAdapter
 import dagger.Module
@@ -36,14 +38,24 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRemoteRepository(api : GithubAPI) : RemoteRepository =
-        RemoteRepository(api)
+    fun providePullRequestRepository(api : GithubAPI) : PullRequestRepository =
+        PullRequestRepository(api)
 
     @Provides
     @Singleton
-    fun provideRemoteDataSource(repository : RemoteRepository) : RemoteDataSource =
-        RemoteDataSource(repository)
-
+    fun providePullRequestDataSource(repository : PullRequestRepository) : PullRequestDataSource =
+        PullRequestDataSource(repository)
+    
+    @Provides
+    @Singleton
+    fun provideUserRepository(api : GithubAPI) : UserRepository =
+        UserRepository(api)
+    
+    @Provides
+    @Singleton
+    fun provideUserDataSource(repository : UserRepository) : UserDataSource =
+        UserDataSource(repository)
+    
     @Provides
     @Singleton
     fun provideGlide(@ApplicationContext context : Context) : RequestManager =

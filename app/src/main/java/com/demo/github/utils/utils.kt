@@ -44,12 +44,3 @@ fun getDateAsDay(dateString: String?) : String {
     val calendar = getDate(dateString)
     return "${calendar.get(Calendar.DAY_OF_MONTH)} ${Constants.month[calendar.get(Calendar.MONTH)]} ${calendar.get(Calendar.YEAR)}"
 }
-
-fun <T> handleResponseResult(response : Response<T>) : Resource<T> {
-    if (response.isSuccessful){
-        response.body()?.let{res->
-            return Resource.Success(res)
-        }
-    }
-    return Resource.Error(UnknownException())
-}

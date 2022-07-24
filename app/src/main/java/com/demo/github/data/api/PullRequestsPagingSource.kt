@@ -31,7 +31,7 @@ class PullRequestsPagingSource(
             )
         }catch (exception: IOException){
             LoadResult.Error(NoInternetConnectionException())
-        }catch (exception: HttpException){
+        }catch (exception: retrofit2.HttpException){
             LoadResult.Error(HttpException())
         }
     }

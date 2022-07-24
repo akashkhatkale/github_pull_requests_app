@@ -10,12 +10,12 @@ import androidx.paging.cachedIn
 import com.demo.github.data.api.Resource
 import com.demo.github.data.model.PullRequestModel
 import com.demo.github.data.model.UserModel
-import com.demo.github.data.repository.RemoteDataSource
+import com.demo.github.data.repository.pullrequest.PullRequestDataSource
+import com.demo.github.data.repository.user.UserDataSource
 import com.demo.github.exceptions.NoInternetConnectionException
 import com.demo.github.utils.Constants
 import com.demo.github.utils.Constants.DEFAULT_STATE
 import com.demo.github.utils.PullRequestState
-import com.demo.github.utils.handleResponseResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -24,7 +24,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private var remote : RemoteDataSource
+    private val pullRequestsDataSource : PullRequestDataSource,
+    private val userDataSource: UserDataSource
 ) : ViewModel() {
 
     // private variables
@@ -48,19 +49,13 @@ class MainViewModel @Inject constructor(
 
     private fun loadUser() = viewModelScope.launch {
         _user.postValue(Resource.Loading())
-        try{
-            val response = remote.getUser()
-            val responseResult = handleResponseResult(response)
-            _user.postValue(responseResult)
-        }catch (exception: IOException){
-            _user.postValue(Resource.Error(NoInternetConnectionException()))
-        }catch (exception: HttpException){
-            _user.postValue(Resource.Error(com.demo.github.exceptions.HttpException()))
-        }
+        val response = userDataSource.getUser()
+        _user.postValue(response)
+        Log.d(Constants.FEED_FRAGMENT_LOG, "setProfile: profile : ${_user.value}")
     }
 
     private fun loadPullRequestsFeed(state : String) = viewModelScope.launch {
-        val response = remote.getPullRequests(state).cachedIn(viewModelScope)
+        val response = pullRequestsDataSource.getPullRequests(state).cachedIn(viewModelScope)
         _pullRequests = response
     }
 

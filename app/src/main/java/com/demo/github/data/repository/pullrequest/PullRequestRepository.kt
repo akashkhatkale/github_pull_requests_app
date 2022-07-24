@@ -1,15 +1,14 @@
-package com.demo.github.data.repository
+package com.demo.github.data.repository.pullrequest
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.demo.github.data.api.GithubAPI
 import com.demo.github.data.api.PullRequestsPagingSource
-import com.demo.github.utils.UrlConstants
 import com.demo.github.utils.UrlConstants.REPO_URL
 
 
-class RemoteRepository(
+class PullRequestRepository(
     private val api : GithubAPI
 ){
 
@@ -29,7 +28,5 @@ class RemoteRepository(
             },
             initialKey = 1
         ).liveData
-
-    suspend fun getUser() = api.getUser(UrlConstants.USER_URL)
 
 }
