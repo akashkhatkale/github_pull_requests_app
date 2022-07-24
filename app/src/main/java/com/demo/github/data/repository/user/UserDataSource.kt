@@ -4,9 +4,9 @@ import com.demo.github.data.api.Resource
 import com.demo.github.data.model.UserModel
 
 class UserDataSource(
-    private val repository: UserRepository
-) {
+    private val repository: UserRepositoryImpl
+) : UserRepository {
     
-    suspend fun getUser() : Resource<UserModel> = repository.getUser()
+    override suspend fun getUser() : Resource<UserModel> = repository.getUser()
     
 }
