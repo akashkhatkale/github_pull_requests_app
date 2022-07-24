@@ -4,7 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.demo.github.data.api.GithubAPI
-import com.demo.github.data.api.PullRequestsPagingSource
+import com.demo.github.data.paging.PullRequestsPagingSource
 import com.demo.github.utils.UrlConstants.REPO_URL
 
 

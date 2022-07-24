@@ -17,6 +17,7 @@ import com.bumptech.glide.RequestManager
 import com.demo.github.R
 import com.demo.github.data.model.PullRequestModel
 import com.demo.github.data.model.UserModel
+import com.demo.github.data.paging.PullRequestLoadStateAdapter
 import com.demo.github.databinding.FragmentFeedBinding
 import com.demo.github.databinding.LayoutProfileBinding
 import com.demo.github.utils.Constants.FEED_FRAGMENT_LOG
@@ -102,9 +103,14 @@ class HomeFragment : Fragment() {
     // recycler view
     private fun setUpRecycler() {
         binding.feedRecyclerView.apply {
-            adapter = feedAdapter
+            adapter = feedAdapter.withLoadStateHeaderAndFooter(
+                PullRequestLoadStateAdapter{feedAdapter.retry()},
+                PullRequestLoadStateAdapter{feedAdapter.retry()}
+            )
             layoutManager = LinearLayoutManager(requireActivity())
+            setHasFixedSize(true)
         }
+        
         feedAdapter.addLoadStateListener {loadState ->
             if (loadState.source.refresh is LoadState.Loading) {
                 // loading

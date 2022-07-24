@@ -1,6 +1,7 @@
-package com.demo.github.data.api
+package com.demo.github.data.paging
 
 import androidx.paging.PagingSource
+import com.demo.github.data.api.GithubAPI
 import com.demo.github.data.model.PullRequestModel
 import com.demo.github.exceptions.HttpException
 import com.demo.github.exceptions.NoInternetConnectionException

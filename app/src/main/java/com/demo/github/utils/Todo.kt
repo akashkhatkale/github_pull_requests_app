@@ -25,6 +25,6 @@ package com.demo.github.utils
 // [done] 9) show user image and username
 // [done] 10) view model testing, created fake repo, unit tests
 // 11) paging tests
-//
+// 12) adding paging progress bar
 //
 // }
