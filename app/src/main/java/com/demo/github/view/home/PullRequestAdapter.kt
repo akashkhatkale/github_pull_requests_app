@@ -11,10 +11,8 @@ import com.bumptech.glide.RequestManager
 import com.demo.github.data.model.PullRequestModel
 import com.demo.github.databinding.LayoutSmallProfileBinding
 import com.demo.github.databinding.ViewholderFeedRowBinding
+import com.demo.github.utils.*
 import com.demo.github.utils.Constants.PLACEHOLDER_DRAWABLE
-import com.demo.github.utils.PullRequestState
-import com.demo.github.utils.getDateAsDay
-import com.demo.github.utils.getInfoText
 
 
 class PullRequestAdapter(
@@ -55,10 +53,9 @@ class PullRequestAdapter(
                 binding.pullRequestInfo.text = getInfoText(pullRequest)
                 binding.pullRequestStartDate.text = getDateAsDay(pullRequest.created_at)
 
-                val state = PullRequestState.state[pullRequest.state]
-                binding.pullRequestStatus.text = state?.get("state") as String
-                binding.pullRequestStatus.setTextColor(ContextCompat.getColor(context, state["color"] as Int))
-                binding.pullRequestIcon.setImageDrawable(ContextCompat.getDrawable(context, state["icon"] as Int))
+                binding.pullRequestStatus.text = getStatusText(pullRequest.state)
+                binding.pullRequestStatus.setTextColor(ContextCompat.getColor(context, getStatusTextColor(pullRequest.state)))
+                binding.pullRequestIcon.setImageDrawable(ContextCompat.getDrawable(context, getInfoIcon(pullRequest.state)))
 
                 val user = LayoutSmallProfileBinding.bind(binding.root)
                 glide.load(pullRequest.user.avatar_url)
