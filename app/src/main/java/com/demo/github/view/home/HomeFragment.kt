@@ -1,16 +1,14 @@
-package com.demo.github.view.fragment
+package com.demo.github.view.home
 
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
-import androidx.core.view.forEach
 import androidx.fragment.app.viewModels
-import androidx.paging.CombinedLoadStates
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,13 +21,12 @@ import com.demo.github.utils.Constants.FEED_FRAGMENT_LOG
 import com.demo.github.utils.Constants.NO_PULL_REQUEST_STATUS
 import com.demo.github.utils.ErrorConstants.UNKNOWN_ERROR
 import com.demo.github.utils.getHeadingTitle
-import com.demo.github.view.viewholder.PullRequestAdapter
 import com.demo.github.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FeedFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentFeedBinding
     private lateinit var menuView : LayoutProfileBinding
@@ -39,7 +36,6 @@ class FeedFragment : Fragment() {
     lateinit var feedAdapter : PullRequestAdapter
     @Inject
     lateinit var requestManager: RequestManager
-
 
 
     override fun onCreateView(
@@ -74,12 +70,14 @@ class FeedFragment : Fragment() {
             }
         }, viewLifecycleOwner)
 
+
         // user
         viewModel.userValue.observe(viewLifecycleOwner){response ->
             response.data?.let{
                 setProfileImage(it.avatar_url)
             }
         }
+
 
         // recycler view
         setUpRecycler()
@@ -89,6 +87,7 @@ class FeedFragment : Fragment() {
         viewModel.stateValue.observe(viewLifecycleOwner){
             binding.pullRequestHeading.text = resources.getString(getHeadingTitle(it))
         }
+
 
         // observe pull requests
         viewModel.pullRequestsValue.observe(viewLifecycleOwner){response ->
@@ -106,7 +105,6 @@ class FeedFragment : Fragment() {
         feedAdapter.addLoadStateListener {loadState ->
             if (loadState.source.refresh is LoadState.Loading) {
                 // loading
-                Log.d(FEED_FRAGMENT_LOG, "loadPullRequestsFeed: res : loading")
                 showLoading(View.VISIBLE)
                 showStatus(View.INVISIBLE)
             } else {
@@ -141,7 +139,7 @@ class FeedFragment : Fragment() {
         binding.feedProgressBar.visibility = visibility
     }
 
-    private fun showStatus(visibility: Int){
+    private fun showStatus(visibility : Int){
         binding.feedStatus.visibility = visibility
     }
 
@@ -150,9 +148,9 @@ class FeedFragment : Fragment() {
 
     }
 
-    private fun setProfileImage(imageUrl: String){
+    private fun setProfileImage(url : String){
         requestManager
-            .load(imageUrl)
+            .load(url)
             .placeholder(R.drawable.icon_person)
             .error(R.drawable.icon_person)
             .into(menuView.pullRequestUserIcon)

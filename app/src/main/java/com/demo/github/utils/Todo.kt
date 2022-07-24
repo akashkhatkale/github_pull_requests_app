@@ -20,6 +20,7 @@ package com.demo.github.utils
 // [done] 4) pagination
 // [done] 5) good ui
 // [done] 6) retrofit
+// [done] 7) profile
 // 7) test cases
 //
 //

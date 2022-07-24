@@ -7,7 +7,7 @@ import com.demo.github.data.api.GithubAPI
 import com.demo.github.data.repository.RemoteDataSource
 import com.demo.github.data.repository.RemoteRepository
 import com.demo.github.utils.UrlConstants
-import com.demo.github.view.viewholder.PullRequestAdapter
+import com.demo.github.view.home.PullRequestAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

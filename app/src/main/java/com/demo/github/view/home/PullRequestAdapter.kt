@@ -1,4 +1,4 @@
-package com.demo.github.view.viewholder
+package com.demo.github.view.home
 
 import android.content.Context
 import android.view.LayoutInflater
