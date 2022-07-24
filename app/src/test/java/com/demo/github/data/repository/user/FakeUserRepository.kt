@@ -30,7 +30,11 @@ class FakeUserRepository : UserRepository {
                 }
             }
         }else{
-            Resource.Success(UserModel())
+            Resource.Success(UserModel(
+                login = "akashkhatkale",
+                name = "Akash Khatkale",
+                avatar_url = "avatar_url"
+            ))
         }
     }
     

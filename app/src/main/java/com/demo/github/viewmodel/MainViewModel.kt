@@ -45,13 +45,13 @@ class MainViewModel @Inject constructor(
         loadUser()
     }
 
-    private fun loadUser() = viewModelScope.launch {
+    fun loadUser() = viewModelScope.launch {
         _user.postValue(Resource.Loading())
         val response = userDataSource.getUser()
         _user.postValue(response)
     }
 
-    private fun loadPullRequestsFeed(state : String) = viewModelScope.launch {
+    fun loadPullRequestsFeed(state : String) = viewModelScope.launch {
         val response = pullRequestsDataSource.getPullRequests(state).cachedIn(viewModelScope)
         _pullRequests = response
     }

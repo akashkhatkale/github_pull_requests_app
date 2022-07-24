@@ -7,6 +7,7 @@ import com.demo.github.exceptions.HttpException
 import com.demo.github.exceptions.NoInternetConnectionException
 import com.demo.github.exceptions.UnknownException
 import com.demo.github.utils.UrlConstants
+import com.demo.github.utils.UrlConstants.USER_URL
 import java.io.IOException
 
 class UserRepositoryImpl(
@@ -15,7 +16,7 @@ class UserRepositoryImpl(
     
     override suspend fun getUser() : Resource<UserModel> {
         return try {
-            val response = api.getUser(UrlConstants.USER_URL)
+            val response = api.getUser(USER_URL)
             if(response.isSuccessful){
                 response.body()?.let{res->
                     return Resource.Success(data = res)
@@ -27,6 +28,5 @@ class UserRepositoryImpl(
         }catch (exception : retrofit2.HttpException){
             Resource.Error(message = HttpException())
         }
-        
     }
 }
