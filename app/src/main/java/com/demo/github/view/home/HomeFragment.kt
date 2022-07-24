@@ -125,12 +125,10 @@ class HomeFragment : Fragment() {
                 showLoading(View.VISIBLE)
                 showStatus(View.INVISIBLE)
                 showStatusRetry(View.INVISIBLE)
-                showRecyclerView(View.VISIBLE)
             } else {
                 showLoading(View.INVISIBLE)
                 showStatusRetry(View.INVISIBLE)
                 showStatus(View.INVISIBLE)
-                showRecyclerView(View.VISIBLE)
     
                 // getting the error
                 val error = getError(loadState)
@@ -138,13 +136,11 @@ class HomeFragment : Fragment() {
                     showStatus(View.VISIBLE)
                     showStatusRetry(View.VISIBLE)
                     setStatus(it.error.message ?: UNKNOWN_ERROR)
-                    showRecyclerView(View.INVISIBLE)
                 } ?: run {
                     if(feedAdapter.itemCount <= 0) {
                         showStatus(View.VISIBLE)
                         showStatusRetry(View.INVISIBLE)
                         setStatus(NO_PULL_REQUEST_STATUS)
-                        showRecyclerView(View.INVISIBLE)
                     }
                 }
             }
@@ -165,10 +161,6 @@ class HomeFragment : Fragment() {
     // update ui
     private fun showLoading(visibility : Int){
         binding.feedProgressBar.visibility = visibility
-    }
-    
-    private fun showRecyclerView(visibility : Int){
-        binding.feedRecyclerView.visibility = visibility
     }
 
     private fun showStatus(visibility : Int){
