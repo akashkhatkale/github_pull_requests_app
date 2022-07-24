@@ -20,10 +20,12 @@ import com.demo.github.data.model.UserModel
 import com.demo.github.data.paging.PullRequestLoadStateAdapter
 import com.demo.github.databinding.FragmentFeedBinding
 import com.demo.github.databinding.LayoutProfileBinding
+import com.demo.github.utils.Constants.DEFAULT_STATE
 import com.demo.github.utils.Constants.FEED_FRAGMENT_LOG
 import com.demo.github.utils.Constants.NO_PULL_REQUEST_STATUS
 import com.demo.github.utils.ErrorConstants.UNKNOWN_ERROR
 import com.demo.github.utils.getHeadingTitle
+import com.demo.github.utils.getWelcomeText
 import com.demo.github.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -81,6 +83,12 @@ class HomeFragment : Fragment() {
                 setProfile(it)
             }
         }
+        
+        // status retry
+        binding.feedStatusRetry.setOnClickListener {
+            viewModel.loadUser()
+            feedAdapter.refresh()
+        }
 
 
         // recycler view
@@ -116,19 +124,28 @@ class HomeFragment : Fragment() {
                 // loading
                 showLoading(View.VISIBLE)
                 showStatus(View.INVISIBLE)
+                showStatusRetry(View.INVISIBLE)
+                showRecyclerView(View.VISIBLE)
             } else {
                 showLoading(View.INVISIBLE)
-
+                showStatusRetry(View.INVISIBLE)
+                showStatus(View.INVISIBLE)
+                showRecyclerView(View.VISIBLE)
+    
                 // getting the error
                 val error = getError(loadState)
                 error?.let {
                     showStatus(View.VISIBLE)
+                    showStatusRetry(View.VISIBLE)
                     setStatus(it.error.message ?: UNKNOWN_ERROR)
-                }
-
-                if(feedAdapter.itemCount <= 0) {
-                    showStatus(View.VISIBLE)
-                    setStatus(NO_PULL_REQUEST_STATUS)
+                    showRecyclerView(View.INVISIBLE)
+                } ?: run {
+                    if(feedAdapter.itemCount <= 0) {
+                        showStatus(View.VISIBLE)
+                        showStatusRetry(View.INVISIBLE)
+                        setStatus(NO_PULL_REQUEST_STATUS)
+                        showRecyclerView(View.INVISIBLE)
+                    }
                 }
             }
         }
@@ -149,9 +166,17 @@ class HomeFragment : Fragment() {
     private fun showLoading(visibility : Int){
         binding.feedProgressBar.visibility = visibility
     }
+    
+    private fun showRecyclerView(visibility : Int){
+        binding.feedRecyclerView.visibility = visibility
+    }
 
     private fun showStatus(visibility : Int){
         binding.feedStatus.visibility = visibility
+    }
+    
+    private fun showStatusRetry(visibility : Int){
+        binding.feedStatusRetry.visibility = visibility
     }
 
     private fun setStatus(status : String){
@@ -159,7 +184,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setProfile(profile : UserModel){
-        binding.homeToolbarTitle.text = "Hello, ${profile.login}"
+        binding.homeToolbarTitle.text = getWelcomeText(profile)
         requestManager
             .load(profile.avatar_url)
             .placeholder(R.drawable.icon_person)

@@ -1,5 +1,6 @@
 package com.demo.github.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +15,9 @@ import com.demo.github.data.repository.pullrequest.PullRequestRepository
 import com.demo.github.data.repository.user.UserDataSource
 import com.demo.github.data.repository.user.UserRepository
 import com.demo.github.utils.Constants.DEFAULT_STATE
+import com.demo.github.utils.Constants.FEED_FRAGMENT_LOG
 import com.demo.github.utils.PullRequestState
+import com.demo.github.utils.PullRequestState.CLOSED_PULL_REQUEST
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,7 +33,7 @@ class MainViewModel @Inject constructor(
         get() = _pullRequests
     
     
-    private var _state = MutableLiveData(PullRequestState.state["closed"]?.get("state") as String)
+    private var _state = MutableLiveData(CLOSED_PULL_REQUEST)
     val stateValue : LiveData<String>
         get() = _state
     
@@ -53,7 +56,7 @@ class MainViewModel @Inject constructor(
 
     private fun loadPullRequestsFeed(state : String) = viewModelScope.launch {
         val response = pullRequestsDataSource.getPullRequests(state).cachedIn(viewModelScope)
-        _pullRequests = response
+        _pullRequests = (response)
     }
 
 }

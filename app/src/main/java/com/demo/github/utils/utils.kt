@@ -2,6 +2,7 @@ package com.demo.github.utils
 
 import com.demo.github.R
 import com.demo.github.data.model.PullRequestModel
+import com.demo.github.data.model.UserModel
 import com.demo.github.utils.Constants.DEFAULT_STATE
 import com.demo.github.utils.PullRequestState.CLOSED_PULL_REQUEST
 import com.demo.github.utils.PullRequestState.NORMAL_PULL_REQUEST_STATUS
@@ -69,5 +70,13 @@ fun getStatusTextColor(state : String) : Int {
         PullRequestState.state[state]?.get("color") as Int
     }else{
         R.color.colorAccent
+    }
+}
+
+fun getWelcomeText(user : UserModel) : String {
+    return if(user.login.isEmpty()){
+        "Hello"
+    }else{
+        "Hello, ${user.login}"
     }
 }

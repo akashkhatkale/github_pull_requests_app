@@ -1,6 +1,7 @@
 package com.demo.github.utils
 
 import com.demo.github.data.model.PullRequestModel
+import com.demo.github.data.model.UserModel
 import org.junit.Assert.*
 import org.junit.Test
 import retrofit2.Response
@@ -62,6 +63,28 @@ class UtilsTest {
         )
         val infoText = getInfoText(pullRequest)
         assertEquals(infoText, "#2345 closed")
+    }
+    
+    @Test
+    fun `Welcome text with valid name`(){
+        val user = UserModel(
+            login = "akashkhatkale",
+            name = "Akash Khatkale",
+            avatar_url = "avatar_url"
+        )
+        val welcomeText = getWelcomeText(user)
+        assertEquals(welcomeText, "Hello, akashkhatkale")
+    }
+    
+    @Test
+    fun `Welcome text with no name`(){
+        val user = UserModel(
+            login = "",
+            name = "Akash Khatkale",
+            avatar_url = "avatar_url"
+        )
+        val welcomeText = getWelcomeText(user)
+        assertEquals(welcomeText, "Hello")
     }
     
 }
