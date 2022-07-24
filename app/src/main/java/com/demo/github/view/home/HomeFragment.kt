@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.RequestManager
 import com.demo.github.R
 import com.demo.github.data.model.PullRequestModel
+import com.demo.github.data.model.UserModel
 import com.demo.github.databinding.FragmentFeedBinding
 import com.demo.github.databinding.LayoutProfileBinding
 import com.demo.github.utils.Constants.FEED_FRAGMENT_LOG
@@ -51,7 +52,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.homeToolbar)
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = ""
+        (requireActivity() as AppCompatActivity).supportActionBar?.apply {
+            title = ""
+        }
 
         // menu
         val menuHost: MenuHost = requireActivity()
@@ -74,7 +77,7 @@ class HomeFragment : Fragment() {
         // user
         viewModel.userValue.observe(viewLifecycleOwner){response ->
             response.data?.let{
-                setProfileImage(it.avatar_url)
+                setProfile(it)
             }
         }
 
@@ -148,9 +151,10 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun setProfileImage(url : String){
+    private fun setProfile(profile : UserModel){
+        binding.homeToolbarTitle.text = "Hello, ${profile.login}"
         requestManager
-            .load(url)
+            .load(profile.avatar_url)
             .placeholder(R.drawable.icon_person)
             .error(R.drawable.icon_person)
             .into(menuView.pullRequestUserIcon)

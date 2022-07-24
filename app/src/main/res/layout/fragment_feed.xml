@@ -24,13 +24,27 @@
             >
 
             <ImageView
-                android:id="@+id/matchesText"
+                android:id="@+id/homeToolbarIcon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/icon_git"
                 android:cropToPadding="true"
                 android:adjustViewBounds="true"
                 />
+
+            <TextView
+                android:id="@+id/homeToolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingHorizontal="10dp"
+                android:gravity="start"
+                android:paddingVertical="15dp"
+                android:text=""
+                android:textAppearance="@style/TitleTextAppearance"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -50,8 +64,8 @@
             android:gravity="start"
             android:background="@color/colorPrimaryLight"
             android:paddingVertical="15dp"
-            android:text="@string/closedPullRequests"
-            android:textAppearance="@style/HeadingTextAppearance"
+            android:text="@string/closedPullRequestsTitle"
+            android:textAppearance="@style/TitleTextAppearance"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

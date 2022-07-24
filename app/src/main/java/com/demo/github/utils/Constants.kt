@@ -9,7 +9,7 @@ object PullRequestState {
             "state" to "closed",
             "color" to R.color.redColor,
             "icon" to R.drawable.icon_close_pull_request,
-            "status" to R.string.closedPullRequests
+            "status" to R.string.closedPullRequestsTitle
         )
     )
 }
