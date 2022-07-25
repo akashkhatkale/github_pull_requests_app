@@ -133,17 +133,15 @@ class HomeFragment : Fragment() {
                 // getting the error
                 val error = getError(loadState)
                 error?.let {
-                    if(feedAdapter.itemCount > 0){
-                        showStatus(View.INVISIBLE)
-                        showStatusRetry(View.INVISIBLE)
-                        setStatus(it.error.message ?: UNKNOWN_ERROR)
-                    }else{
+                    if(feedAdapter.itemCount <= 0){
+                        // error in loading data
                         showStatus(View.VISIBLE)
                         showStatusRetry(View.VISIBLE)
                         setStatus(it.error.message ?: UNKNOWN_ERROR)
                     }
                 } ?: run {
                     if(feedAdapter.itemCount <= 0) {
+                        // zero pull requests
                         showStatus(View.VISIBLE)
                         showStatusRetry(View.INVISIBLE)
                         setStatus(NO_PULL_REQUEST_STATUS)

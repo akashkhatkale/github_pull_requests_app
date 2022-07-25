@@ -2,9 +2,6 @@ package com.demo.github.utils
 
 
 // {
-// 4) add refresh
-// 4) add test cases and evaluate corner cases
-
 // 5) Use cache (optional)
 // 3) add refresh (optional)
 // 6) try dynamic loading of pull requests, by adding repo url manually
