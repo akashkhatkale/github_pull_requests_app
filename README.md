@@ -1,6 +1,7 @@
 # github_pull_requests_app
 
 [Created as a part of assessment for a company's interview]
+
 Created a Github pull requests app, which shows closed pull requests of a specific public repository.
 
 This project has :
